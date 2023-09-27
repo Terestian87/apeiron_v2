@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import GlobalStyle from "../utilities/GlobalStyle";
-// import Navbar from "./Navbar";
+import Navbar from "./Navbar";
 import Home from "../pages/Home";
 // import Gallery from "../pages/Gallery";
 // import About from "../pages/About";
@@ -13,6 +13,14 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthContext, UserActionsKind } from "../context/AuthContext";
 
+const StyledRouterContainer = styled("div")`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - ${process.env.REACT_APP_NAVBAR_HEIGHT});
+  border-radius: 25px;
+`;
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -24,12 +32,6 @@ const App = () => {
     context.dispatch({ type: UserActionsKind.LOGOUT, payload: null });
   };
 
-  const StyledPageContainer = styled("div")`
-  border:3px solid red;
-  width:100%;
-  display: flex;
-  justify-content: center;
-  `;
   useEffect(() => {
     if (context.user !== null) {
       setIsLoggedIn(true);
@@ -39,8 +41,8 @@ const App = () => {
   return (
     <Router>
       <GlobalStyle />
-      {/* <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> */}
-      <StyledPageContainer>
+      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <StyledRouterContainer>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/notes" element={<Notes />} />
@@ -52,7 +54,7 @@ const App = () => {
         <Route path="/login" element={<Login />} > */}
           {/* <Route path="*" element={<PageNotFound/>}/> */}
         </Routes>
-      </StyledPageContainer>
+      </StyledRouterContainer>
     </Router>
   );
 };
