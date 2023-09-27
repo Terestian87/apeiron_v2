@@ -26,7 +26,7 @@ const StyledInput = styled("input")<{ customWidth?: number }>`
   color: white;
   text-align: center;
   margin: 5px 0 3rem 0;
-  width: ${({ customWidth }) => (customWidth ? `${customWidth}px` : "50px")};
+  width: ${({ customWidth }) => (customWidth ? `${customWidth}px` : "250px")};
   &:active {
     outline: none;
   }

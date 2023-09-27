@@ -3,10 +3,8 @@ import styled from "styled-components";
 
 const StyledPageContainer = styled("div")`
 display: flex;
-justify-content: center;
 align-items: center;
 flex-direction: column;
-margin-top: 50px;
 `;
 
 const StyledTitle = styled("h1")`

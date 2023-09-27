@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
      *{
           margin:0;
           padding:0;
-          box-sizing: inherit;
-          font-family: 'Open Sans', sans-serif;
+          font-family: "Dancing Script", cursive;
+          box-sizing: border-box;
      }
 
  :root {
@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
  body {
       background-color: black;
       color:white;
-      box-sizing: border-box;
       a{
            cursor:pointer;
       }
