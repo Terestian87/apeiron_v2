@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface InputInterface {
   type?: "text" | "number" | "email" | "password";
-  hasLabel : boolean;
+  hasLabel: boolean;
   label?: string;
   className?: string;
   value: string | number;
@@ -12,21 +12,38 @@ interface InputInterface {
   error?: boolean;
   disabled?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  ref:  React.RefObject<HTMLInputElement>
+  ref: React.RefObject<HTMLInputElement>;
+  customPxWidth?: string;
+  customPercentageWidth?: number;
 }
-const StyledInputWrapper = styled("div")``;
+const StyledInputWrapper = styled("div")<{
+  customPxWidth?: string;
+  customPercentageWidth?: number;
+}>`
+  margin: 0 auto;
+  width: ${({ customPxWidth, customPercentageWidth }) =>
+    customPxWidth
+      ? `${customPxWidth}px`
+      : customPercentageWidth
+      ? `${customPercentageWidth}%`
+      : "250px"};
+  :hover {
+    cursor: url("http://www.rw-designer.com/cursor-extern.php?id=113889"), auto;
+  }
+`;
 const StyledInputLabel = styled("label")<{ label?: boolean }>``;
 
-const StyledInput = styled("input")<{ customWidth?: number }>`
+const StyledInput = styled("input")`
   font-family: "Courgette", cursive;
   background-color: black;
+  border: 3px solid red;
   border-radius: 10px;
   outline: none;
-  border: 3px solid red;
   color: white;
   text-align: center;
-  margin: 5px 0 3rem 0;
-  width: ${({ customWidth }) => (customWidth ? `${customWidth}px` : "250px")};
+  padding: 20px;
+  font-size: 20px;
+  width: 100%;
   &:active {
     outline: none;
   }
@@ -37,11 +54,14 @@ const StyledInput = styled("input")<{ customWidth?: number }>`
     cursor: url("http://www.rw-designer.com/cursor-extern.php?id=113889"), auto;
   }
 `;
-const Input: React.FC<InputInterface> = (props: any) => {
+const Input: React.FC<InputInterface> = (props: InputInterface) => {
   return (
-    <StyledInputWrapper>
+    <StyledInputWrapper
+      customPercentageWidth={props.customPercentageWidth}
+      customPxWidth={props.customPxWidth}
+    >
       {props.label && <StyledInputLabel />}
-      <StyledInput {...props}/>
+      <StyledInput {...props} />
     </StyledInputWrapper>
   );
 };

@@ -6,15 +6,14 @@ import { motion } from "framer-motion";
 
 //#region Styled components
 const StyledNotesWrapper = styled("div")`
-  display: flex;
-  width: 100%;
-  height: calc(100vh - ${process.env.REACT_APP_NAVBAR_HEIGHT});
-  `;
+  width:100%;
+  padding: 0 40px;
+`;
 
 const StyledFormAnimator = styled(motion.div)`
   width: 100%;
   display: flex;
-  `;
+`;
 
 const StyledSpiralAnimator = styled(motion.div)`
   width: 60%;
@@ -22,8 +21,8 @@ const StyledSpiralAnimator = styled(motion.div)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
-  `;
+  /* z-index: 1; */
+`;
 //#endregion
 
 const Notes = () => {
