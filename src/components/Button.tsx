@@ -5,7 +5,7 @@ import styled from "styled-components";
   // onClick?: React.MouseEvent<HTMLButtonElement, MouseEvent>;
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   id?: string;
-  disabled: boolean;
+  disabled?: boolean;
   children?: string;
 }
 
