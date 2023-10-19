@@ -5,8 +5,8 @@ import Home from "../pages/Home";
 import Notes from "../pages/Notes";
 // import Gallery from "../pages/Gallery";
 // import About from "../pages/About";
-// import Summon from "../pages/Summon";
-// import Library from "../pages/Library";
+import Summon from "../pages/Summon";
+import Library from "../pages/Library";
 // import Signup from "../pages/Signup";
 // import Login from "../pages/login";
 import styled from "styled-components";
@@ -46,9 +46,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/notes" element={<Notes />} />
+          <Route path="/summon" element={<Summon/>}/>
+          <Route path="/library" element={<Library/>} />
           {/* <Route path="/gallery" element={<Gallery/>} />
-        <Route path="/summon" element={<Summon/>}/>
-        <Route path="/library" element={<Library/>} />
         <Route path="/about" element={<About/>} >
         <Route path="/signup" element={<Signup />} >
         <Route path="/login" element={<Login />} > */}
