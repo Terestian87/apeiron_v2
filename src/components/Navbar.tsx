@@ -15,7 +15,6 @@ const StyledNavbar = styled("nav")`
   justify-content: space-between;
   align-items: center;
   height: ${process.env.REACT_APP_NAVBAR_HEIGHT};
-  margin-bottom: ${process.env.REACT_APP_NAVBAR_BOTTOM_SPACING};
 `;
 
 const StyledRightLinkWrapper = styled("ul")`

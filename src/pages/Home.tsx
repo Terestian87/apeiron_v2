@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
-const StyledPageContainer = styled("div")`
-display: flex;
-align-items: center;
-flex-direction: column;
-`;
+import StyledPageContainer from "../components/PageContainer";
 
 const StyledTitle = styled("h1")`
   margin-bottom: 2rem;
