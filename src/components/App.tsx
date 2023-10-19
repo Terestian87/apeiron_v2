@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import GlobalStyle from "../utilities/GlobalStyle";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
+import Notes from "../pages/Notes";
 // import Gallery from "../pages/Gallery";
 // import About from "../pages/About";
-import Notes from "../pages/Notes";
 // import Summon from "../pages/Summon";
 // import Library from "../pages/Library";
 // import Signup from "../pages/Signup";
@@ -18,7 +18,7 @@ const StyledRouterContainer = styled("div")`
   display: flex;
   justify-content: center;
   height: calc(100vh - ${process.env.REACT_APP_NAVBAR_HEIGHT});
-  border-radius: 25px;
+  padding: ${process.env.REACT_APP_NAVBAR_BOTTOM_SPACING} 40px 0;
 `;
 
 const App = () => {

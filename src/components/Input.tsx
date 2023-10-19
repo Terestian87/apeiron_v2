@@ -1,47 +1,86 @@
-import { ChangeEvent } from "react";
 import styled from "styled-components";
 
-interface InputInterface {
-  type?: "text" | "number" | "email" | "password";
-  hasLabel : boolean;
-  label?: string;
-  className?: string;
-  value: string | number;
-  name: string;
-  placeholder: string;
-  error?: boolean;
-  disabled?: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  ref:  React.RefObject<HTMLInputElement>
+interface StyledInputProps {
+  customPxWidth?: string;
+  customPercentageWidth?: number;
+  customPxHeight?: string;
+  customPercentageHeight?: number;
+  customFontSize?: number;
 }
-const StyledInputWrapper = styled("div")``;
+interface InputInterface extends React.InputHTMLAttributes<HTMLInputElement> {
+  hasLabel: boolean;
+  label?: string;
+  ref?: React.RefObject<HTMLInputElement>;
+}
+
+const StyledInputWrapper = styled("div")<{
+  customPxWidth?: string;
+  customPercentageWidth?: number;
+  customPxHeight?: string;
+  customPercentageHeight?: number;
+}>`
+  margin: 0 auto;
+  width: ${({ customPxWidth, customPercentageWidth }) =>
+    customPxWidth
+      ? `${customPxWidth}px`
+      : customPercentageWidth
+      ? `${customPercentageWidth}%`
+      : "250px"};
+  height: ${({ customPxHeight, customPercentageHeight }) =>
+    customPxHeight
+      ? `${customPxHeight}px`
+      : customPercentageHeight
+      ? `${customPercentageHeight}%`
+      : "50px"};
+  :hover {
+    cursor: url("http://www.rw-designer.com/cursor-extern.php?id=113889"), auto;
+  }
+`;
 const StyledInputLabel = styled("label")<{ label?: boolean }>``;
 
-const StyledInput = styled("input")<{ customWidth?: number }>`
+const StyledInput = styled("input")<{ customFontSize?: number }>`
   font-family: "Courgette", cursive;
-  background-color: black;
+  font-size: 14px;
+  background-color: transparent;
+  border: 3px solid var(--primary-bright);
   border-radius: 10px;
   outline: none;
-  border: 3px solid red;
-  color: white;
+  color: var(--text-color-bright);
   text-align: center;
-  margin: 5px 0 3rem 0;
-  width: ${({ customWidth }) => (customWidth ? `${customWidth}px` : "250px")};
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  font-size: ${({ customFontSize }) =>
+    customFontSize ? `${customFontSize}px` : "14px"};
+
   &:active {
     outline: none;
   }
   &:focus {
-    border: 3px solid white;
+    border: 3px solid;
   }
   :hover {
     cursor: url("http://www.rw-designer.com/cursor-extern.php?id=113889"), auto;
   }
 `;
-const Input: React.FC<InputInterface> = (props: any) => {
+
+const Input: React.FC<InputInterface & StyledInputProps> = ({
+  customPercentageWidth,
+  customPxWidth,
+  customPercentageHeight,
+  customPxHeight,
+  label,
+  ...props
+}) => {
   return (
-    <StyledInputWrapper>
-      {props.label && <StyledInputLabel />}
-      <StyledInput {...props}/>
+    <StyledInputWrapper
+      customPercentageWidth={customPercentageWidth}
+      customPxWidth={customPxWidth}
+      customPercentageHeight={customPercentageHeight}
+      customPxHeight={customPxHeight}
+    >
+      {label && <StyledInputLabel />}
+      <StyledInput {...props} />
     </StyledInputWrapper>
   );
 };

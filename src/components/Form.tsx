@@ -1,37 +1,27 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import Input from "./Input";
+import Button from "./Button";
 import { AuthContext, User } from "../context/AuthContext";
 
 //#region styled components
 const StyledForm = styled("form")`
-  /* width: 100%;
-  z-index: 2; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* z-index: 2;  */
 `;
 
-const StyledSubmitButton = styled("button")`
-  padding: 1rem 2rem;
-  background-color: transparent;
-  color: grey;
-  font-size: 14px;
-  outline: none;
-  border: 2px solid white;
-  border-radius: 5px;
-  transition: all 0.5s ease;
-  :hover {
-    background-color: #c00000;
-    border-color: #c00000;
-    color: #fff;
-  }
-`;
 //#endregion
 
-interface IProps {
+interface FormInterface {
   setSpiral: React.Dispatch<React.SetStateAction<boolean>>;
   spiral: boolean;
 }
 
-const Form: React.FC<IProps> = ({ setSpiral, spiral }) => {
+const Form: React.FC<FormInterface> = ({ setSpiral, spiral }) => {
   const [loggedUser, setLoggedUSer] = useState<User>(null);
   const [quote, setQuote] = useState("");
   const [title, setTitle] = useState("");
@@ -90,56 +80,58 @@ const Form: React.FC<IProps> = ({ setSpiral, spiral }) => {
     }
 
     setSpiral(!spiral);
-    if (quoteRef.current && titleRef.current && authorRef.current) {
-      quoteRef.current.blur();
-      titleRef.current.blur();
-      authorRef.current.blur();
-    }
+    // if (quoteRef.current && titleRef.current && authorRef.current) {
+    //   quoteRef.current.blur();
+    //   titleRef.current.blur();
+    //   authorRef.current.blur();
+    // }
     setTimeout(() => {
       resetDefaultInput();
       setIsLoading(false);
     }, 5000);
   };
   return (
-
-      <StyledForm onSubmit={(e) => onSubmitFormHandler(e)}>
-        <Input
-          hasLabel={false}
-          name="quote"
-          placeholder="Write your quote here"
-          value={quote}
-          onChange={(e) => setQuote(e.target.value)}
-          ref={quoteRef}
-          // autoComplete="off"
-          // placeholder="Write your quote here"
-          // disabled={isLoading}
+    <StyledForm onSubmit={(e) => onSubmitFormHandler(e)} autoComplete="off">
+      <Input
+        hasLabel={false}
+        name="quote"
+        placeholder="Write your quote here"
+        value={quote}
+        onChange={(e) => setQuote(e.target.value)}
+        ref={quoteRef}
+        customPercentageWidth={100}
+        customPxHeight="100"
+        customFontSize={25}
+        disabled={isLoading}
         />
-        {/* <Input
-            name="title"
-            className="book"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            ref={titleRef}
-            placeholder="Unknown"
-            autoComplete="off"
-            disabled={isLoading}
-          />
-          <Input
-            name="author"
-            className="author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            ref={authorRef}
-            placeholder="Anonimous"
-            autoComplete="off"
-            disabled={isLoading}
-          /> */}
-        <StyledSubmitButton disabled={isLoading} type="submit">
-          Send to the Apeiron
-        </StyledSubmitButton>
-        {/* </Input> */}
-      </StyledForm>
-
+      <Input
+        hasLabel={false}
+        name="title"
+        placeholder="Book title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        ref={titleRef}
+        customPercentageWidth={75}
+        customPxHeight="75"
+        customFontSize={20}
+        disabled={isLoading}
+        />
+      <Input
+        hasLabel={false}
+        name="author"
+        placeholder="Author"
+        value={author}
+        onChange={(e) => setAuthor(e.target.value)}
+        ref={authorRef}
+        customPercentageWidth={50}
+        customFontSize={15}
+        customPxHeight="50"
+        disabled={isLoading}
+      />
+      <Button disabled={isLoading} type="submit">
+        Send to the Apeiron
+      </Button>
+    </StyledForm>
   );
 };
 

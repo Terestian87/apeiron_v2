@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../components/Form";
 import Spiral from "../components/Spiral";
+import StyledPageContainer from "../components/PageContainer";
 import { motion } from "framer-motion";
 
 //#region Styled components
-const StyledNotesWrapper = styled("div")`
-  display: flex;
-  width: 100%;
-  height: calc(100vh - ${process.env.REACT_APP_NAVBAR_HEIGHT});
-  `;
 
 const StyledFormAnimator = styled(motion.div)`
   width: 100%;
+  height:100%;
   display: flex;
-  `;
+`;
 
 const StyledSpiralAnimator = styled(motion.div)`
   width: 60%;
@@ -23,13 +20,13 @@ const StyledSpiralAnimator = styled(motion.div)`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  `;
+`;
 //#endregion
 
 const Notes = () => {
   const [spiral, setSpiral] = useState<boolean>(false);
   return (
-    <StyledNotesWrapper>
+    <StyledPageContainer>
       <StyledFormAnimator
         animate={{
           opacity: spiral ? 0 : 1,
@@ -38,7 +35,7 @@ const Notes = () => {
           duration: spiral ? 6 : 1,
         }}
       >
-        <Form setSpiral={setSpiral} spiral={spiral} />
+        <Form setSpiral={setSpiral} spiral={spiral}/>
       </StyledFormAnimator>
       <div className="spiralPositioner ">
         {spiral && (
@@ -55,7 +52,7 @@ const Notes = () => {
           </StyledSpiralAnimator>
         )}
       </div>
-    </StyledNotesWrapper>
+    </StyledPageContainer>
   );
 };
 
