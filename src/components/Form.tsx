@@ -6,22 +6,22 @@ import { AuthContext, User } from "../context/AuthContext";
 
 //#region styled components
 const StyledForm = styled("form")`
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   /* z-index: 2;  */
 `;
 
-
 //#endregion
 
-interface IProps {
+interface FormInterface {
   setSpiral: React.Dispatch<React.SetStateAction<boolean>>;
   spiral: boolean;
 }
 
-const Form: React.FC<IProps> = ({ setSpiral, spiral }) => {
+const Form: React.FC<FormInterface> = ({ setSpiral, spiral }) => {
   const [loggedUser, setLoggedUSer] = useState<User>(null);
   const [quote, setQuote] = useState("");
   const [title, setTitle] = useState("");
@@ -80,18 +80,18 @@ const Form: React.FC<IProps> = ({ setSpiral, spiral }) => {
     }
 
     setSpiral(!spiral);
-    if (quoteRef.current && titleRef.current && authorRef.current) {
-      quoteRef.current.blur();
-      titleRef.current.blur();
-      authorRef.current.blur();
-    }
+    // if (quoteRef.current && titleRef.current && authorRef.current) {
+    //   quoteRef.current.blur();
+    //   titleRef.current.blur();
+    //   authorRef.current.blur();
+    // }
     setTimeout(() => {
       resetDefaultInput();
       setIsLoading(false);
     }, 5000);
   };
   return (
-    <StyledForm onSubmit={(e) => onSubmitFormHandler(e)}>
+    <StyledForm onSubmit={(e) => onSubmitFormHandler(e)} autoComplete="off">
       <Input
         hasLabel={false}
         name="quote"
@@ -100,36 +100,33 @@ const Form: React.FC<IProps> = ({ setSpiral, spiral }) => {
         onChange={(e) => setQuote(e.target.value)}
         ref={quoteRef}
         customPercentageWidth={100}
-        
-        // autoComplete="off"
-        // placeholder="Write your quote here"
-        // disabled={isLoading}
+        customPxHeight="100"
+        customFontSize={25}
+        disabled={isLoading}
         />
       <Input
         hasLabel={false}
         name="title"
-        placeholder="Unknown"
+        placeholder="Book title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         ref={titleRef}
         customPercentageWidth={75}
-        
-        // className="book"
-        // autoComplete="off"
-        // disabled={isLoading}
+        customPxHeight="75"
+        customFontSize={20}
+        disabled={isLoading}
         />
       <Input
         hasLabel={false}
         name="author"
-        placeholder="Anonimous"
+        placeholder="Author"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
         ref={authorRef}
         customPercentageWidth={50}
-        
-        // className="author"
-        // autoComplete="off"
-        // disabled={isLoading}
+        customFontSize={15}
+        customPxHeight="50"
+        disabled={isLoading}
       />
       <Button disabled={isLoading} type="submit">
         Send to the Apeiron

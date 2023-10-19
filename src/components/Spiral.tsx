@@ -58,11 +58,11 @@ const StyledQuoteWrapper = styled("div")<{ reversed: boolean }>`
     opacity: 0;
 
     path {
-      fill: #872525e6;
+      fill: var(--spiral-color);
     }
     g {
       path {
-        fill: #872525e6;
+        fill: var(--spiral-color);
       }
     }
   }
